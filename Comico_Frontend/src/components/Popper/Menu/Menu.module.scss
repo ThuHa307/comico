@@ -1,0 +1,9 @@
+.menu-item {
+    display: flex;
+    font-size: 3rem;
+    margin-left: 0 !important ;
+
+    &:hover {
+        color: var(--primary);
+    }
+}

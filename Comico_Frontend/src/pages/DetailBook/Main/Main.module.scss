@@ -1,0 +1,203 @@
+.breadcrumb {
+    padding: 12px 0;
+    background-color: #f2f3f4;
+}
+
+.links {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    font-size: 1.4rem;
+    margin: 0 160px;
+}
+
+.link-title {
+    color: #888888;
+    font-weight: 100;
+}
+
+.breadcrumb-divider {
+    background: url(https://ebook.waka.vn/themes/desktop/reactjs/images/icon/br-arrow-right.png) no-repeat;
+    width: 8px;
+    height: 12px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.container {
+    max-width: var(--default-width);
+    margin: auto;
+}
+
+.detail-book {
+    background-color: var(--white-color);
+    padding: 20px;
+    display: flex;
+}
+
+.book-thumb {
+    padding-right: 20px;
+    flex: 1;
+}
+
+.book-img {
+    height: auto;
+    width: 100%;
+    box-shadow: 0px 0px 10.32px 1.68px rgb(0 0 0 / 20%);
+}
+
+.book-rate {
+    text-align: center;
+    margin-top: 16px;
+}
+
+.book-rate-icon {
+    border: 1px solid transparent;
+    padding: 8px;
+    border-radius: 50%;
+    background-color: #f9fafb;
+    color: #919191;
+    font-size: 20px;
+    cursor: pointer;
+
+    &:hover {
+        color: #ffc107;
+    }
+}
+
+.content {
+    flex: 3;
+}
+
+.book-info-line {
+    margin: 10px 0;
+}
+
+.detail-tag {
+    display: inline-block;
+    margin-left: 8px;
+    color: #888888;
+
+    a {
+        color: #888888;
+    }
+}
+
+.read-btn {
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.book-decs {
+    background-color: #ffd73e33;
+    border-radius: 4px;
+    padding: 16px;
+}
+
+.chapter-list {
+    background-color: var(--white-color);
+    padding: 20px;
+}
+
+.header {
+    text-align: center;
+}
+
+.header-title {
+    font-size: 1.8rem;
+}
+
+.list {
+    list-style: none;
+    max-height: 430px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.list-item {
+    display: flex;
+    justify-content: space-between;
+    height: 36px;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+
+    &:nth-child(2n) {
+        background-color: #f2f3f4;
+    }
+}
+
+.chapter {
+    &:hover {
+        color: var(--primary-blue);
+    }
+}
+
+// tablet & pc
+@media (min-width: 740px) {
+    .follow-btn {
+        display: none;
+    }
+}
+
+//tablet
+@media (min-width: 740px) and (max-width: 1023px) {
+    .read-btn {
+        margin-top: 0;
+        margin-bottom: 15px;
+    }
+
+    .links {
+        margin: 0 88px;
+    }
+
+    .chapter-list {
+        margin-top: 30px;
+    }
+
+    .list-item {
+        padding: 10px;
+    }
+}
+
+//mobile
+@media (max-width: 739px) {
+    // .breadcrumb {
+    //     display: none;
+    // }
+    .links {
+        margin: 0 20px;
+    }
+    .detail-book {
+        flex-direction: column;
+    }
+    .book-thumb {
+        padding: 0;
+        width: 200px;
+        margin: auto;
+    }
+    .book-rate {
+        display: none;
+    }
+    .book-info {
+        text-align: center;
+    }
+    .name {
+        font-size: 2.5rem;
+        font-weight: 400;
+    }
+    .control-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .follow-btn {
+        margin-top: 20px;
+        margin-bottom: 30px;
+        background-color: var(--primary);
+    }
+
+    .chapter-list {
+        margin-top: 30px;
+    }
+}

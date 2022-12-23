@@ -1,0 +1,13 @@
+.wrapper {
+    background-color: #f9fafb;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content {
+    min-height: 1000px;
+    width: 100%;
+}

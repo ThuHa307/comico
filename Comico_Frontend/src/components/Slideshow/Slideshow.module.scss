@@ -1,0 +1,152 @@
+.wrapper {
+    background-color: var(--white-color);
+    padding: 17px 15px;
+    margin: 30px auto;
+    position: relative;
+    width: var(--default-width);
+    overflow: hidden;
+}
+
+.container {
+    margin: 16px 20px;
+    overflow: hidden;
+}
+
+.sliders {
+    white-space: nowrap;
+    display: flex;
+    flex-wrap: nowrap;
+    margin: 0 15px;
+    transition: ease 1000ms;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 35px;
+    border-bottom: 1px solid #ecedee;
+}
+
+.header-title {
+    font-size: 2.1rem;
+    font-weight: 400;
+}
+
+.header-seemore {
+    font-size: 1.3rem;
+    color: var(--primary-blue);
+    cursor: pointer;
+}
+
+.book {
+    display: inline-block;
+    width: 150px;
+    border: 1px solid #dedede;
+    margin-right: 40px;
+    flex-shrink: 0;
+    border-radius: 4px;
+    box-shadow: 0px 1px 3px 0px rgb(0 0 0 / 20%);
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+        border-color: var(--primary-blue);
+    }
+}
+
+.book-img {
+    width: 100%;
+    height: auto;
+}
+
+.book-info {
+    padding: 0 10px 10px;
+}
+
+.name {
+    font-weight: 400;
+    font-size: 1.3rem;
+    height: 24px;
+    overflow: hidden;
+    display: block;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    text-overflow: ellipsis;
+
+    &:hover {
+        cursor: pointer;
+        color: var(--primary-blue);
+    }
+}
+
+.author {
+    font-size: 1.2rem;
+    color: #888888;
+}
+
+.prev-btn,
+.next-btn {
+    position: absolute;
+    font-size: 24px;
+    padding: 16px;
+    top: 50%;
+    transform: translateY(-30%);
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+        color: var(--primary);
+    }
+}
+
+.prev-btn {
+    left: 0;
+}
+.next-btn {
+    right: 0;
+}
+
+.active {
+    color: #dedede;
+
+    &:hover {
+        color: #dedede;
+        cursor: default;
+    }
+}
+
+// tablet and mobile
+@media (max-width: 1023px) {
+    .prev-btn,
+    .next-btn {
+        -webkit-tap-highlight-color: transparent;
+    }
+}
+
+// tablet
+@media (min-width: 740px) and (max-width: 1023px) {
+    .wrapper {
+        width: 750px;
+    }
+
+    .prev-btn,
+    .next-btn {
+        -webkit-tap-highlight-color: transparent;
+    }
+}
+
+//mobile
+@media (max-width: 739px) {
+    .wrapper {
+        width: 380px;
+    }
+
+    .sliders {
+        margin: 0;
+    }
+
+    .book {
+        margin-right: 10px;
+    }
+}
