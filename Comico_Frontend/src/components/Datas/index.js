@@ -25,7 +25,7 @@ const datas = [
     },
     {
         image: 'https://307a0e78.vws.vegacdn.vn/view/v2/image/img.book/0/0/1/41138.jpg?v=1&w=340&h=497',
-        name: 'Một thoáng ta rực rỡ ở nhân gian',
+        name: ' Một thoáng ta rực rỡ ở nhân gian',
         author: 'Ocean Vuong',
         genres: ['Truyện dài - Tiểu thuyết', 'Văn học'],
     },

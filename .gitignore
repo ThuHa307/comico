@@ -1,4 +1,5 @@
-/Comico_Frontend/node_modules/
-/Comico_Backend/node_modules/
-/Comico_Frontend/package-lock.json/
-/Comico_Backend/package-lock.json/
+/comico_frontend/node_modules/
+/comico_backend/node_modules/
+comico_frontend/package-lock.json
+comico_backend/.env
+comico_backend/package-lock.json
