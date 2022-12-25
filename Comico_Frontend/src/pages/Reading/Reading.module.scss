@@ -1,0 +1,40 @@
+.container {
+    margin: auto;
+}
+.header {
+    text-align: center;
+    padding: 20px;
+}
+.control {
+    text-align: center;
+    margin: 20px 0;
+}
+.name-book {
+    color: var(--primary);
+    font-size: 2.4rem;
+}
+.current-chapter {
+    color: var(--primary-blue);
+    margin-top: 10px;
+}
+.chapter-list {
+    margin: 0 10px;
+    width: 140px;
+    height: 40px;
+    font-size: 1.5rem;
+    /* line-height: 1.8rem; */
+    border-radius: 2px;
+    border-color: var(--primary-blue);
+}
+.content {
+    max-width: var(--default-width);
+    margin: auto;
+    font-size: 1.8rem;
+}
+
+// tablet & mobile
+@media (max-width: 1023px) {
+    .content {
+        padding: 0 10px;
+    }
+}

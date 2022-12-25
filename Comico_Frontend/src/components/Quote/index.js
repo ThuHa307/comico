@@ -35,7 +35,6 @@ const quotes = [
 
 function Quote() {
     let nextDisabled, prevDisabled;
-    console.log('re-render');
 
     const [state, setState] = useState(0);
     state === quotes.length - 1 ? (nextDisabled = true) : (nextDisabled = false);

@@ -1,29 +1,3 @@
-.breadcrumb {
-    padding: 12px 0;
-    background-color: #f2f3f4;
-}
-
-.links {
-    display: flex;
-    align-items: center;
-    list-style: none;
-    font-size: 1.4rem;
-    margin: 0 160px;
-}
-
-.link-title {
-    color: #888888;
-    font-weight: 100;
-}
-
-.breadcrumb-divider {
-    background: url(https://ebook.waka.vn/themes/desktop/reactjs/images/icon/br-arrow-right.png) no-repeat;
-    width: 8px;
-    height: 12px;
-    margin-left: 10px;
-    margin-right: 10px;
-}
-
 .container {
     max-width: var(--default-width);
     margin: auto;
@@ -162,12 +136,6 @@
 
 //mobile
 @media (max-width: 739px) {
-    // .breadcrumb {
-    //     display: none;
-    // }
-    .links {
-        margin: 0 20px;
-    }
     .detail-book {
         flex-direction: column;
     }

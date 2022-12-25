@@ -5,27 +5,14 @@ import { Link } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import styles from './Main.module.scss';
 import Button from '../../../components/Button';
+import Breadcrumb from '../../../components/Breadcrumb';
 
 const cx = classNames.bind(styles);
 
 function Main() {
     return (
         <div className={cx('wrapper')}>
-            <div className={cx('breadcrumb')}>
-                <ul className={cx('links')}>
-                    <li className={cx('link')}>
-                        <Link className={cx('link-title')} to={'/'}>
-                            Trang chủ
-                        </Link>
-                    </li>
-                    <span className={cx('breadcrumb-divider')}></span>
-                    <li className={cx('link')}>
-                        <Link className={cx('link-title')} to={'#'}>
-                            Lạc mất cô dâu xung hỉ
-                        </Link>
-                    </li>
-                </ul>
-            </div>
+            <Breadcrumb title="Lạc mất cô dâu xung hỉ" to="#" path="/detail" />
 
             <div className={cx('container')}>
                 <div className="grid wide">
