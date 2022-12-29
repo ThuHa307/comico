@@ -5,6 +5,7 @@ import mongoose from 'mongoose';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
 
+import authRoute from './routes/auth.js';
 import authorRoute from './routes/author.js';
 import bookRoute from './routes/book.js';
 
@@ -21,6 +22,7 @@ app.use(morgan('common'));
 app.use(bodyParser.json());
 
 //ROUTES
+app.use('/auth', authRoute);
 app.use('/api/author', authorRoute);
 app.use('/api/book', bookRoute);
 

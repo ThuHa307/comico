@@ -30,7 +30,9 @@ function Header() {
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <nav className={cx('navigation')}>
-                    <img className={cx('logo')} src={images.logo} alt="logo" />
+                    <Link to={'/'}>
+                        <img className={cx('logo')} src={images.logo} alt="logo" />
+                    </Link>
 
                     <nav className={cx('nav-items')}>
                         <Menu datas={genres}>
