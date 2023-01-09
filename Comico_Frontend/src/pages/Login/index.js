@@ -9,9 +9,10 @@ import images from '../../assets/image';
 const cx = classNames.bind(styles);
 
 function Login() {
+    const handleLogin = () => {};
     return (
         <div className={cx('wrapper')}>
-            <form action="" method="post" className={cx('form')}>
+            <form action="" method="post" className={cx('form')} onSubmit={handleLogin}>
                 <Link to="/" className={cx('logo')}>
                     <img src={images.logo} alt="" />
                 </Link>
