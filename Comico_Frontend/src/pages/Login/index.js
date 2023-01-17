@@ -1,15 +1,29 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleUser, faKey, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import styles from './Login.module.scss';
 import Button from '../../components/Button';
 import images from '../../assets/image';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { loginUser } from '../../redux/apiRequest';
 
 const cx = classNames.bind(styles);
 
 function Login() {
-    const handleLogin = () => {};
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const handleLogin = (e) => {
+        e.preventDefault();
+        const newUser = {
+            username,
+            password,
+        };
+        loginUser(newUser, dispatch, navigate);
+    };
     return (
         <div className={cx('wrapper')}>
             <form action="" method="post" className={cx('form')} onSubmit={handleLogin}>
@@ -31,6 +45,7 @@ function Login() {
                             type="text"
                             placeholder="Tên đăng nhập"
                             autoComplete="off"
+                            onChange={(e) => setUsername(e.target.value)}
                         />
                     </div>
                 </div>
@@ -49,11 +64,14 @@ function Login() {
                             type="password"
                             placeholder="Nhập mật khẩu"
                             autoComplete="off"
+                            onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
                 </div>
                 <span></span>
-                <button className={cx('submit')}>Đăng nhập</button>
+                <Button type="submit" className={cx('submit')}>
+                    Đăng nhập
+                </Button>
                 <p className={cx('ask')}>
                     Bạn chưa có tài khoản?
                     <Button to="/register" underline className={cx('login')} href="">

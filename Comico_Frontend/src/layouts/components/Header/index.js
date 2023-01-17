@@ -1,4 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useState, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import {
     faCircleXmark,
     faMagnifyingGlass,
@@ -6,6 +8,10 @@ import {
     faRankingStar,
     faBars,
     faXmark,
+    faChevronDown,
+    faUser,
+    faBookBookmark,
+    faArrowRightFromBracket,
 } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames/bind';
 
@@ -14,18 +20,35 @@ import styles from './Header.module.scss';
 import images from '../../../assets/image';
 import Button from '../../../components/Button';
 import genres from '../../../components/Genres';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Image from '../../../components/Image';
 
 const cx = classNames.bind(styles);
 
 function Header() {
     const [state, setSate] = useState(false);
 
+    const userMenu = [
+        {
+            icon: <FontAwesomeIcon icon={faUser} />,
+            title: 'Trang cá nhân',
+            to: '/profile',
+        },
+        {
+            icon: <FontAwesomeIcon icon={faBookBookmark} />,
+            title: 'Truyện theo dõi',
+            to: '#',
+        },
+        {
+            icon: <FontAwesomeIcon icon={faArrowRightFromBracket} />,
+            title: 'Đăng xuất',
+            to: '/login',
+        },
+    ];
+
     const handleMenu = () => {
         setSate(!state);
     };
-
+    const currentUser = true;
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -59,16 +82,35 @@ function Header() {
                     </button>
                 </div>
                 <div className={cx('actions')}>
-                    <Button to="/login" underline>
-                        Đăng nhập
-                    </Button>
-                    <Button to="/register" primary>
-                        Đăng ký
-                    </Button>
+                    {currentUser ? (
+                        <div className={cx('account')}>
+                            <Image
+                                className={cx('acc-thumb')}
+                                src="https://bizweb.dktcdn.net/100/303/962/files/87126502-2509242206005371-2073523065622364160-n-f697e400-e8b2-4bb1-9698-d00b50b2d9c3.jpg?v=1627804121650"
+                                alt="Meo Meo"
+                            />
+                            <Menu datas={userMenu} className={cx('acc-menu')}>
+                                <div className={cx('acc-info')}>
+                                    <p className={cx('acc-username')}>thuhadev</p>
+                                    <FontAwesomeIcon className={cx('acc-icon')} icon={faChevronDown} />
+                                </div>
+                            </Menu>
+                        </div>
+                    ) : (
+                        <Fragment>
+                            <Button to="/login" underline>
+                                Đăng nhập
+                            </Button>
+                            <Button to="/register" primary>
+                                Đăng ký
+                            </Button>
+                        </Fragment>
+                    )}
                 </div>
                 <div className={cx('menu-icon')} onClick={handleMenu}>
                     {state ? <FontAwesomeIcon icon={faXmark} /> : <FontAwesomeIcon icon={faBars} />}
                 </div>
+                {/* Mobile & Tablet */}
                 <div className={cx('menu-list', { active: state })}>
                     <div className={cx('mobile_search')}>
                         <input placeholder="Tìm sách, tác giả..." />

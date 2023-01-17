@@ -33,13 +33,13 @@
 
 .nav-items {
     display: flex;
+    align-items: center;
 }
 
 .nav-item {
     font-size: 1.6rem;
     font-weight: 400;
     padding: 0 10px;
-    line-height: var(--logo-height);
     cursor: pointer;
 
     &:hover {
@@ -110,6 +110,32 @@
 
 .spinner {
     animation: loading 0.7s linear infinite;
+}
+
+.account {
+    display: flex;
+    align-items: center;
+}
+
+.acc-thumb {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.acc-info {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.acc-username {
+    margin: 0 5px 0 10px;
+}
+
+.acc-icon {
+    font-size: 1.2rem;
 }
 
 @keyframes loading {

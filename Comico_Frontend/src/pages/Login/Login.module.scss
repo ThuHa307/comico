@@ -94,16 +94,11 @@ input[type='text']::placeholder {
 
 .submit {
     width: 100%;
-    border: 1px solid;
-    border-radius: 5px;
     font-size: 15px;
-    height: 40px;
     margin-top: 16px;
-    background-color: #af2323;
+    background-color: #af2323 !important;
     color: #f1f1f1;
     font-weight: 600;
-    cursor: pointer;
-    border: none;
 
     &:hover {
         opacity: 0.9;
