@@ -38,8 +38,8 @@ const authController = {
     generateRefreshToken: (user) => {
         return jwt.sign(
             {
-                id: user.id,
-                isAdmin: user.isAdmin,
+                id: user?.id,
+                isAdmin: user?.isAdmin,
             },
             process.env.JWT_REFRESH_TOKEN,
             { expiresIn: '365d' },
@@ -65,7 +65,7 @@ const authController = {
                     sameSite: 'strict', // prevent xss attacks
                 });
                 const { password, ...others } = user._doc;
-                res.status(200).json({ others, accessToken });
+                res.status(200).json({ ...others, accessToken });
             }
         } catch (error) {
             res.status(500).json({ error: error });
@@ -75,6 +75,7 @@ const authController = {
     requestRefreshToken: async (req, res) => {
         // take refershToken from user
         const refreshToken = req.cookies.refreshToken;
+        console.log(req);
         if (!refreshToken) res.status(401).json("You're not authenticated!");
         refreshTokens = refreshTokens.filter((token) => token !== refreshToken);
         // verify refresh token
@@ -82,21 +83,29 @@ const authController = {
             if (err) {
                 console.log(err);
             }
+            refreshTokens = refreshTokens.filter((token) => token !== refreshToken);
+            //create new access token, refresh token and send to user
+            console.log(user);
             const newAccessToken = authController.generateAccessToken(user);
             const newRefreshToken = authController.generateRefreshToken(user);
-            res.cookie('refreshToken', newRefreshToken, {
+            refreshTokens.push(newRefreshToken);
+            res.cookie('refreshToken', refreshToken, {
                 httpOnly: true,
+                secure: false,
                 path: '/',
                 sameSite: 'strict',
             });
-            res.status(200).json(newAccessToken);
+            res.status(200).json({
+                accessToken: newAccessToken,
+                refreshToken: newRefreshToken,
+            });
         });
     },
 
     //LOG OUT
     logOut: async (req, res) => {
         //Clear cookies when user logs out
-        refreshTokens = refreshTokens.filter((token) => token !== req.body.token);
+        refreshTokens = refreshTokens.filter((token) => token !== req.cookies.refreshToken);
         res.clearCookie('refreshToken');
         res.status(200).json('Logged out successfully!');
     },

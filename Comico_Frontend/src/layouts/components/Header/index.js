@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState, Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import {
     faCircleXmark,
     faMagnifyingGlass,
@@ -15,18 +16,26 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames/bind';
 
+import { createAxios } from '../../../createInstance';
 import Menu from '../../../components/Popper/Menu';
 import styles from './Header.module.scss';
 import images from '../../../assets/image';
 import Button from '../../../components/Button';
 import genres from '../../../components/Genres';
 import Image from '../../../components/Image';
+import { logoutSuccess } from '../../../redux/authSlice';
+import { logoutUser } from '../../../redux/apiRequest';
 
 const cx = classNames.bind(styles);
 
 function Header() {
     const [state, setSate] = useState(false);
-
+    const user = useSelector((state) => state.auth.login?.currentUser);
+    console.log(user);
+    let userId = user?._id;
+    const dispatch = useDispatch();
+    const accessToken = user?.accessToken;
+    let axiosJWT = createAxios(user, dispatch, logoutSuccess);
     const userMenu = [
         {
             icon: <FontAwesomeIcon icon={faUser} />,
@@ -42,13 +51,16 @@ function Header() {
             icon: <FontAwesomeIcon icon={faArrowRightFromBracket} />,
             title: 'Đăng xuất',
             to: '/login',
+            onClick: () => {
+                logoutUser(dispatch, userId, axiosJWT, accessToken);
+                console.log(user);
+            },
         },
     ];
-
     const handleMenu = () => {
         setSate(!state);
     };
-    const currentUser = true;
+
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -82,16 +94,17 @@ function Header() {
                     </button>
                 </div>
                 <div className={cx('actions')}>
-                    {currentUser ? (
+                    {user ? (
                         <div className={cx('account')}>
                             <Image
                                 className={cx('acc-thumb')}
-                                src="https://bizweb.dktcdn.net/100/303/962/files/87126502-2509242206005371-2073523065622364160-n-f697e400-e8b2-4bb1-9698-d00b50b2d9c3.jpg?v=1627804121650"
+                                src=""
+                                // src="https://bizweb.dktcdn.net/100/303/962/files/87126502-2509242206005371-2073523065622364160-n-f697e400-e8b2-4bb1-9698-d00b50b2d9c3.jpg?v=1627804121650"
                                 alt="Meo Meo"
                             />
                             <Menu datas={userMenu} className={cx('acc-menu')}>
                                 <div className={cx('acc-info')}>
-                                    <p className={cx('acc-username')}>thuhadev</p>
+                                    <p className={cx('acc-username')}>{user.username}</p>
                                     <FontAwesomeIcon className={cx('acc-icon')} icon={faChevronDown} />
                                 </div>
                             </Menu>

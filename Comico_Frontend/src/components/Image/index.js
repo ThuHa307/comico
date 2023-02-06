@@ -4,7 +4,7 @@ import images from '../../assets/image';
 function Image({ src, alt, ...props }, ref) {
     const [fallback, setFallback] = useState('');
     const handleError = () => {
-        setFallback(images.noImage);
+        setFallback(images.userImg);
     };
     return <img ref={ref} src={fallback || src} alt={alt} {...props} onError={handleError} />;
 }
