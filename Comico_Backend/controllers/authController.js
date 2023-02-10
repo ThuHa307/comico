@@ -31,15 +31,15 @@ const authController = {
                 isAdmin: user.isAdmin,
             },
             process.env.JWT_ACCESS_TOKEN,
-            { expiresIn: '30s' },
+            { expiresIn: '10s' },
         );
     },
 
     generateRefreshToken: (user) => {
         return jwt.sign(
             {
-                id: user?.id,
-                isAdmin: user?.isAdmin,
+                id: user.id,
+                isAdmin: user.isAdmin,
             },
             process.env.JWT_REFRESH_TOKEN,
             { expiresIn: '365d' },
@@ -50,10 +50,10 @@ const authController = {
         try {
             const user = await User.findOne({ username: req.body.username });
             if (!user) {
-                res.status(404).json('Wrong username!');
+                return res.status(404).json('Wrong username!');
             }
             const validPassword = await bcrypt.compare(req.body.password, user.password);
-            if (!validPassword) res.status(404).json('Wrong password!');
+            if (!validPassword) return res.status(404).json('Wrong password!');
             if (user && validPassword) {
                 const accessToken = authController.generateAccessToken(user);
                 const refreshToken = authController.generateRefreshToken(user);
@@ -61,8 +61,9 @@ const authController = {
                 //Save token in cookie
                 res.cookie('refreshToken', refreshToken, {
                     httpOnly: true,
+                    secure: false,
                     path: '/',
-                    sameSite: 'strict', // prevent xss attacks
+                    sameSite: 'strict',
                 });
                 const { password, ...others } = user._doc;
                 res.status(200).json({ ...others, accessToken });
@@ -75,9 +76,11 @@ const authController = {
     requestRefreshToken: async (req, res) => {
         // take refershToken from user
         const refreshToken = req.cookies.refreshToken;
-        console.log(req);
-        if (!refreshToken) res.status(401).json("You're not authenticated!");
-        refreshTokens = refreshTokens.filter((token) => token !== refreshToken);
+        console.log(req.cookies);
+        if (!refreshToken) return res.status(401).json("You're not authenticated!");
+        if (!refreshTokens.includes(refreshToken)) {
+            return res.status(403).json('Refresh token is not valid');
+        }
         // verify refresh token
         jwt.verify(refreshToken, process.env.JWT_REFRESH_TOKEN, (err, user) => {
             if (err) {
@@ -85,11 +88,10 @@ const authController = {
             }
             refreshTokens = refreshTokens.filter((token) => token !== refreshToken);
             //create new access token, refresh token and send to user
-            console.log(user);
             const newAccessToken = authController.generateAccessToken(user);
             const newRefreshToken = authController.generateRefreshToken(user);
             refreshTokens.push(newRefreshToken);
-            res.cookie('refreshToken', refreshToken, {
+            res.cookie('refreshToken', newRefreshToken, {
                 httpOnly: true,
                 secure: false,
                 path: '/',
@@ -105,8 +107,8 @@ const authController = {
     //LOG OUT
     logOut: async (req, res) => {
         //Clear cookies when user logs out
-        refreshTokens = refreshTokens.filter((token) => token !== req.cookies.refreshToken);
         res.clearCookie('refreshToken');
+        refreshTokens = refreshTokens.filter((token) => token !== req.cookies.refreshToken);
         res.status(200).json('Logged out successfully!');
     },
 };

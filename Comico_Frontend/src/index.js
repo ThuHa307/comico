@@ -9,15 +9,15 @@ import { store, persistor } from './redux/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <React.StrictMode>
-        <Provider store={store}>
-            <PersistGate loading={null} persistor={persistor}>
-                <GlobalStyles>
-                    <App />
-                </GlobalStyles>
-            </PersistGate>
-        </Provider>
-    </React.StrictMode>,
+    // <React.StrictMode>
+    <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+            <GlobalStyles>
+                <App />
+            </GlobalStyles>
+        </PersistGate>
+    </Provider>,
+    // </React.StrictMode>,
 );
 
 // If you want to start measuring performance in your app, pass a function

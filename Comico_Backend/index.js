@@ -18,7 +18,13 @@ mongoose.connect(process.env.MONGODB_URL, () => {
 
 const PORT = 8000;
 
-app.use(cors());
+const corsOptions = {
+    origin: true,
+    credentials: true,
+    optionSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 app.use(morgan('common'));
 app.use(cookieParser());
 app.use(express.json());

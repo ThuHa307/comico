@@ -14,7 +14,10 @@ import {
 export const loginUser = async (user, dispatch, navigate) => {
     dispatch(loginStart());
     try {
-        const res = await axios.post('http://localhost:8000/auth/login', user);
+        const res = await axios.post('http://localhost:8000/auth/login', user, {
+            withCredentials: true,
+            credentials: 'include',
+        });
         dispatch(loginSuccess(res.data));
         navigate('/');
     } catch (err) {
@@ -38,6 +41,8 @@ export const logoutUser = async (dispatch, id, axiosJWT, accessToken) => {
     try {
         await axiosJWT.post('http://localhost:8000/auth/logout', id, {
             headers: { token: `Bearer ${accessToken}` },
+            withCredentials: true,
+            credentials: 'include',
         });
         dispatch(logoutSuccess());
     } catch (error) {
