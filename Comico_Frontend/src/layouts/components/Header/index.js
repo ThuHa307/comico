@@ -31,7 +31,6 @@ const cx = classNames.bind(styles);
 function Header() {
     const [state, setSate] = useState(false);
     const user = useSelector((state) => state.auth.login?.currentUser);
-    console.log(user);
     let userId = user?._id;
     const dispatch = useDispatch();
     const accessToken = user?.accessToken;
@@ -53,7 +52,6 @@ function Header() {
             to: '/login',
             onClick: () => {
                 logoutUser(dispatch, userId, axiosJWT, accessToken);
-                console.log(user);
             },
         },
     ];

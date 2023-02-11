@@ -76,7 +76,6 @@ const authController = {
     requestRefreshToken: async (req, res) => {
         // take refershToken from user
         const refreshToken = req.cookies.refreshToken;
-        console.log(req.cookies);
         if (!refreshToken) return res.status(401).json("You're not authenticated!");
         if (!refreshTokens.includes(refreshToken)) {
             return res.status(403).json('Refresh token is not valid');
