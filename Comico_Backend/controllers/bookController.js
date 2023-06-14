@@ -17,7 +17,7 @@ const bookController = {
 
     getAllBook: async (req, res) => {
         try {
-            const books = await Book.find();
+            const books = await Book.find({}, null, { limit: 12 }).populate('author');
             res.status(200).json(books);
         } catch (error) {
             res.status(500).json(error);

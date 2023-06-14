@@ -15,7 +15,7 @@ function Book({ data, className }) {
                     </div>
                     <div className={cx('book-info')}>
                         <p className={cx('name')}>{data.name}</p>
-                        <p className={cx('author')}>{data.author}</p>
+                        <p className={cx('author')}>{data.author.name}</p>
                         <div className={cx('votes-icon')}>
                             <FontAwesomeIcon className={cx('default', { voting: true })} icon={faHeart} />
                             <FontAwesomeIcon className={cx('default', { voting: true })} icon={faHeart} />

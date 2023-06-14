@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState, Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import {
     faCircleXmark,
@@ -33,6 +33,7 @@ function Header() {
     const user = useSelector((state) => state.auth.login?.currentUser);
     let userId = user?._id;
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const accessToken = user?.accessToken;
     let axiosJWT = createAxios(user, dispatch, logoutSuccess);
     const userMenu = [
@@ -51,7 +52,7 @@ function Header() {
             title: 'Đăng xuất',
             to: '/login',
             onClick: () => {
-                logoutUser(dispatch, userId, axiosJWT, accessToken);
+                logoutUser(dispatch, userId, axiosJWT, accessToken, navigate);
             },
         },
     ];

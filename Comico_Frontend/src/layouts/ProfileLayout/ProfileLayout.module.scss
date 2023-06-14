@@ -1,5 +1,6 @@
 .container {
     width: 100%;
+    margin-top: 60px;
 }
 .wrapper {
     background-color: #f9fafb;
@@ -8,9 +9,4 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.content {
-    min-height: 1000px;
-    width: 100%;
 }

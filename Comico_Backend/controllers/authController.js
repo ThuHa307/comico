@@ -65,6 +65,7 @@ const authController = {
                     path: '/',
                     sameSite: 'strict',
                 });
+                //Tách giá trị password từ đối tượng user._doc và gán các giá trị còn lại vào object others.
                 const { password, ...others } = user._doc;
                 res.status(200).json({ ...others, accessToken });
             }

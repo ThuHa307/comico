@@ -36,7 +36,7 @@ export const registerUser = async (user, dispatch, navigate) => {
     }
 };
 
-export const logoutUser = async (dispatch, id, axiosJWT, accessToken) => {
+export const logoutUser = async (dispatch, id, axiosJWT, accessToken, navigate) => {
     dispatch(logoutStart());
     try {
         await axiosJWT.post('http://localhost:8000/auth/logout', id, {
@@ -45,6 +45,7 @@ export const logoutUser = async (dispatch, id, axiosJWT, accessToken) => {
             credentials: 'include',
         });
         dispatch(logoutSuccess());
+        navigate('/');
     } catch (error) {
         dispatch(logoutFailure());
     }

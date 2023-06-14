@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 
 const authorSchema = new mongoose.Schema({
     name: {
@@ -6,6 +6,9 @@ const authorSchema = new mongoose.Schema({
         required: true,
     },
     description: {
+        type: String,
+    },
+    image: {
         type: String,
     },
     books: [
@@ -27,9 +30,18 @@ const bookSchema = new mongoose.Schema({
     genres: {
         type: [String],
     },
+    reads: {
+        type: Number,
+    },
+    view: {
+        type: Number,
+    },
     author: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Author',
+    },
+    image: {
+        type: String,
     },
 });
 
@@ -60,8 +72,27 @@ const userSchema = new mongoose.Schema(
     { timestamps: true },
 );
 
+const interactSchema = new mongoose.Schema({
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+    },
+    book: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Book',
+        },
+    ],
+    type: {
+        type: String,
+        enum: ['follow', 'favorite'],
+        required: true,
+    },
+});
+
 let Book = mongoose.model('Book', bookSchema);
 let Author = mongoose.model('Author', authorSchema);
 let User = mongoose.model('User', userSchema);
+let Interact = mongoose.model('Interact', interactSchema);
 
-export { Book, Author, User };
+export { Book, Author, User, Interact };

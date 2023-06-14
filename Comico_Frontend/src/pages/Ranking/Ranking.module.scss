@@ -6,6 +6,8 @@
 .container {
     background-color: var(--white-color);
     padding: 20px 20px 0;
+    border-radius: 5px;
+    box-shadow: 0 0 11px rgb(33 33 33 / 20%);
 }
 
 .header {
@@ -134,6 +136,8 @@
 .recommend {
     background-color: var(--white-color);
     padding: 0 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 11px rgb(33 33 33 / 20%);
 }
 
 .recommend_header-title {
