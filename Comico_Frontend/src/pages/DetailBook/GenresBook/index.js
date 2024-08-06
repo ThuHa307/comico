@@ -1,6 +1,5 @@
 import Slideshow from '../../../components/Slideshow';
-import datas from '../../../components/Datas';
-function GenresBook() {
+function GenresBook({ datas }) {
     return <Slideshow datas={datas} title="Sách cùng thể loại" />;
 }
 

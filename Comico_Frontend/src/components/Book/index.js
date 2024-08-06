@@ -8,10 +8,10 @@ const cx = classNames.bind(styles);
 function Book({ data, className }) {
     return (
         <div className={className}>
-            <Link to={'/detail'}>
+            <Link to={`/detail/${data._id}`}>
                 <div className={cx('book')}>
                     <div className={cx('book-img')}>
-                        <img className={cx('image')} src={data.image} alt="Cửa hàng thịnh vượng" />
+                        <img className={cx('image')} src={data.image} alt={data.name} />
                     </div>
                     <div className={cx('book-info')}>
                         <p className={cx('name')}>{data.name}</p>

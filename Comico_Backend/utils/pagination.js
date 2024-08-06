@@ -1,4 +1,6 @@
-export const paginatedResults = function (model) {
+import { Book } from '../model/model.js';
+
+export const paginatedResults = function (model, query) {
     return async (req, res, next) => {
         const page = parseInt(req.query.page);
         const limit = parseInt(req.query.limit);
@@ -19,7 +21,21 @@ export const paginatedResults = function (model) {
             };
         }
         try {
-            results.data = await model.find().limit(limit).skip(startIndex).exec();
+            const dataQuery = query || {};
+            if (model === Book) results.data = await model.find(dataQuery).limit(limit).skip(startIndex).exec();
+            const genre = await model
+                .findOne(dataQuery)
+                .populate({
+                    path: 'books',
+                    options: {
+                        skip: startIndex,
+                        limit: limit,
+                    },
+                })
+                .exec();
+            results.lastPage = Math.ceil(genre.total / limit);
+            results.data = genre.books;
+
             res.paginatedResults = results;
             next();
         } catch (e) {

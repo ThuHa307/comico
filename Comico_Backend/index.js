@@ -9,8 +9,8 @@ import authRoute from './routes/auth.js';
 import authorRoute from './routes/author.js';
 import bookRoute from './routes/book.js';
 import interact from './routes/interact.js';
-import { Book } from './model/model.js';
-import { paginatedResults } from './utils/pagination.js';
+import genre from './routes/genre.js';
+import chapter from './routes/chapter.js';
 
 const app = express();
 
@@ -39,9 +39,7 @@ app.use('/auth', authRoute);
 app.use('/api/author', authorRoute);
 app.use('/api/book', bookRoute);
 app.use('/api/interact', interact);
-
-app.get('/book', paginatedResults(Book), (req, res) => {
-    res.json(res.paginatedResults);
-});
+app.use('/api/genre', genre);
+app.use('/api/chapter', chapter);
 
 app.listen(PORT, () => console.log(`Server is running at: http://localhost:${PORT}`));

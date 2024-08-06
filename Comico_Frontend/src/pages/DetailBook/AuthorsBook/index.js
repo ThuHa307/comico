@@ -1,6 +1,5 @@
 import Slideshow from '../../../components/Slideshow';
-import datas from '../../../components/Datas';
-function AuthorsBook() {
+function AuthorsBook({ datas }) {
     return <Slideshow datas={datas} title="Sách cùng tác giả" />;
 }
 

@@ -3,6 +3,7 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons
 import classNames from 'classnames/bind';
 import styles from './Slideshow.module.scss';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -56,13 +57,12 @@ function Slideshow({ datas, title, className }) {
             <div className={cx('container')}>
                 <div className={cx('sliders')} style={{ transform: `translate3d(${-state}px, 0, 0)` }}>
                     {datas.map((book, index) => (
-                        <div key={index} className={cx('book')}>
+                        <Link to={`/detail/${book._id}`} key={index} className={cx('book')}>
                             <img className={cx('book-img')} src={book.image} alt={book.name} />
                             <div className={cx('book-info')}>
                                 <p className={cx('name')}>{book.name}</p>
-                                <p className={cx('author')}>{book.author}</p>
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
             </div>

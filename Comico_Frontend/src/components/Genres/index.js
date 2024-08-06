@@ -1,27 +1,27 @@
 const genres = [
     {
         title: 'Ngôn tình',
-        to: '/genres/ngon-tinh',
+        to: '/genre/books/ngon-tinh',
     },
     {
         title: 'Kinh dị',
-        to: '/genres/kinh-di',
+        to: '/genre/books/kinh-di',
     },
     {
         title: 'Văn học',
-        to: '/genres/van-hoc',
+        to: '/genre/books/van-hoc',
     },
     {
         title: 'Kinh doanh - Làm giàu',
-        to: '/genres/kinh-doanh-lam-giau',
+        to: '/genre/books/kinh-doanh-lam-giau',
     },
     {
         title: 'Truyện dài - Tiểu thuyết',
-        to: '/genres/chua-lanh-tam-hon',
+        to: '/genre/books/chua-lanh-tam-hon',
     },
     {
         title: 'Thiếu nhi',
-        to: '/genres/thieu-nhi',
+        to: '/genre/books/thieu-nhi',
     },
 ];
 
